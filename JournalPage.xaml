@@ -1,0 +1,114 @@
+﻿<Page x:Class="DigitalWellbeingWPF.Views.JournalPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DigitalWellbeingWPF.Views"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
+      mc:Ignorable="d" 
+     d:DesignHeight="550" d:DesignWidth="800"
+      Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
+      Foreground="{DynamicResource SystemControlPageTextBaseHighBrush}"
+      Title="Activity History">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SettingListItemStyle" TargetType="ui:ListViewItem">
+                <Setter Property="Padding" Value="12,10"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            </Style>
+            <Style x:Key="SettingListViewStyle" TargetType="ui:ListView">
+                <Setter Property="IsSelectionEnabled" Value="False"/>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+
+        <ui:ScrollViewerEx>
+
+            <ui:SimpleStackPanel>
+                <TextBlock Text="User's Activity" Style="{DynamicResource BaseTextBlockStyle}" />
+
+                <ui:ListViewItem Style="{StaticResource SettingListItemStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ui:SimpleStackPanel Grid.Column="0" Margin="0,0,20,0">
+                            <TextBlock Text="Text-to-Speech" Style="{DynamicResource BaseTextBlockStyle}"/>
+                            <TextBlock Text="Press the play button to activate the text-to-speech."
+                                       Style="{DynamicResource CaptionTextBlockStyle}"/>
+                        </ui:SimpleStackPanel>
+
+
+                        <ui:CommandBar Background ="Transparent" Grid.Column="1">
+                            <ui:CommandBar.PrimaryCommands>
+                                <ui:AppBarButton Icon="Play" x:Name="btn_Speak" Click="btn_Speak_Click"/>
+                                <ui:AppBarButton Icon="Pause" x:Name="btn_speakPause" Click="btn_speakPause_Click" />
+                                <ui:AppBarButton Icon="Stop" x:Name="btn_speakStop" Click="btn_speakStop_Click"/>
+                                <ui:AppBarButton Icon="Redo" x:Name="btn_speakResume" Click="btn_speakResume_Click"/>
+
+                            </ui:CommandBar.PrimaryCommands>
+                        </ui:CommandBar>
+
+                    </Grid>
+
+
+
+                </ui:ListViewItem>
+                <ui:ListViewItem Style="{StaticResource SettingListItemStyle}" Height="401">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ui:SimpleStackPanel Grid.Column="0" Margin="0,0,20,0">
+                            <ListView x:Name="detailedLogs" Height ="390" Style="{DynamicResource BaseListViewStyle}"/>
+                        </ui:SimpleStackPanel>
+
+
+                    </Grid>
+                </ui:ListViewItem>
+                <ui:ListViewItem Style="{StaticResource SettingListItemStyle}">
+                    <Grid x:Name="gridClear">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ui:SimpleStackPanel Grid.Column="0" Margin="0,0,20,0">
+                            <TextBlock Text="Clear History" Style="{DynamicResource BaseTextBlockStyle}"/>
+                            <TextBlock Text="Press the play button to activate the text-to-speech."
+                                       Style="{DynamicResource CaptionTextBlockStyle}"/>
+                        </ui:SimpleStackPanel>
+
+                        <Button Style="{DynamicResource DefaultButtonStyle}" x:Name="btn_Clear" Content="Clear" Grid.Column="1" Click="btn_Clear_Click"/>
+
+                    </Grid>
+
+
+
+
+
+
+
+
+
+                </ui:ListViewItem>
+            </ui:SimpleStackPanel>
+
+        </ui:ScrollViewerEx>
+
+
+
+
+
+
+    </Grid>
+
+</Page>

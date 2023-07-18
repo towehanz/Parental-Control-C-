@@ -1,0 +1,120 @@
+﻿<Page x:Class="DigitalWellbeingWPF.Views.ParentalControlPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DigitalWellbeingWPF.Views"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800"
+      Title="Parental Control"
+      Background="{DynamicResource SystemControlPageBackgroundAltHighBrush}"
+      Foreground="{DynamicResource SystemControlPageTextBaseHighBrush}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="SettingListItemStyle" TargetType="ui:ListViewItem">
+                <Setter Property="Padding" Value="12,10"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            </Style>
+            <Style x:Key="SettingListViewStyle" TargetType="ui:ListView">
+                <Setter Property="IsSelectionEnabled" Value="False"/>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <ui:ScrollViewerEx>
+
+            <ui:SimpleStackPanel>
+                <TextBlock Text="Set Controls" Style="{DynamicResource BaseTextBlockStyle}" Margin="10,0,0,10"/>
+
+
+
+                <ui:ListViewItem Style="{StaticResource SettingListItemStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ui:SimpleStackPanel Grid.Column="0" Margin="0,0,20,0">
+                            <TextBlock Text="Block Application" Style="{DynamicResource BaseTextBlockStyle}"/>
+                            <TextBlock Text="Select application to block."
+                                       Style="{DynamicResource CaptionTextBlockStyle}"/>
+                        </ui:SimpleStackPanel>
+
+
+                        <Button Style="{DynamicResource DefaultButtonStyle}" x:Name="btn_blockApps" Content="Block Apps" Grid.Column="1" Click="btn_blockApps_Click"/>
+
+                    </Grid>
+                </ui:ListViewItem>
+                <ui:ListViewItem Style="{StaticResource SettingListItemStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ui:SimpleStackPanel Grid.Column="0" Margin="0,0,20,0">
+                            <TextBlock Text="Set Timer" Style="{DynamicResource BaseTextBlockStyle}"/>
+                            <TextBlock Text="Set timer and choose whether to lock or shut down the PC. (Lock feature is best with windows with PIN/Password)"
+                                       Style="{DynamicResource CaptionTextBlockStyle}"/>
+                        </ui:SimpleStackPanel>
+
+
+                        <ui:ToggleSwitch x:Name="ToggleSetTimer"  Grid.Column="1" Toggled="ToggleSetTimer_Toggled" Margin="60,0,0,0" Width="94"/>
+                    </Grid>
+                </ui:ListViewItem>
+
+                <ui:ListView Style="{DynamicResource SettingListViewStyle}" Height="158">
+                    <ui:ListViewItem Style="{StaticResource SettingListItemStyle}" Height="207">
+                        <Grid x:Name="grid_Timer">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto" MinWidth="336"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ui:SimpleStackPanel Grid.Column="0" Margin="0,0,20,0">
+                                <TextBlock Text="Choose power options:" Margin="0,10,0,-10" Style="{DynamicResource BaseTextBlockStyle}" Grid.Row="0"/>
+                                <TextBlock Text="Set Timer: " Style="{DynamicResource BaseTextBlockStyle}" Margin="0,49,0,-49" Grid.Row="0"/>
+                            </ui:SimpleStackPanel>
+                            <ComboBox x:Name="comboBox_options" Style="{DynamicResource DefaultComboBoxStyle}" Width="186" Grid.Column="1"  Grid.Row="0" Height="32" Margin="148,2,0,0">
+                                <ComboBoxItem Content="Shut Down" Selected="shutdown_Selected"/>
+                                <ComboBoxItem Content="Lock" Selected="lock_Selected"/>
+                            </ComboBox>
+                            <ui:SimpleStackPanel Orientation="Horizontal" Grid.Column ="1">
+                                <TextBox x:Name="hours" Margin="106,52,-158,53" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                                <TextBox x:Name="minutes" Margin="176,52,-228,53" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                <TextBox x:Name="seconds" Margin="246,52,-298,53" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                            </ui:SimpleStackPanel>
+
+                            <ui:SimpleStackPanel Orientation="Horizontal" Grid.Column ="1">
+                                <Button x:Name="btn_Start" Margin="140,116,0,0" VerticalAlignment="Top" Height="31" Width="70" Content="Start" Click="btn_Start_Click"/>
+                                <Button x:Name="btn_Cancel" Margin="49,116,0,0" VerticalAlignment="Top" Height="31" Width="70" Content="Cancel" Click="btn_Cancel_Click"/>
+                                <Label Content="hh" HorizontalAlignment="Left" Width="16" Margin="-201,88,0,82"/>
+                                <Label Content="mm" HorizontalAlignment="Left" Width="27" Margin="-121,88,0,82"/>
+                                <Label Content="ss" HorizontalAlignment="Left" Width="16" Margin="-34,88,0,82"/>
+                            </ui:SimpleStackPanel>
+
+
+
+
+                        </Grid>
+                    </ui:ListViewItem>
+
+                </ui:ListView>
+
+            </ui:SimpleStackPanel>
+
+
+
+        </ui:ScrollViewerEx>
+    </Grid>
+</Page>
